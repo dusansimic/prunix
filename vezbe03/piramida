@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Niste odredili dimenziju piramide!"
+	exit
+fi
+
+width=$1
+for i in $(seq "$1"); do	
+	line=""
+	startpos=$(( width - i ))
+	
+	for j in $(seq "$startpos"); do
+		line="$line "
+	done
+	
+	for j in $(seq "$i"); do
+		line="$line* "
+	done
+	
+	echo "$line"
+done

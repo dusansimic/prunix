@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+	echo "Niste odredili naziv proizvodjaca!"
+	echo "Pozivate skriptu sa:"
+	echo "$ ./po-proizvodjacu <naziv proizvodjaca>"
+	exit 1
+fi
+
+spisakoglasa=$(grep -E "^\b($1)[:]" -n oglasi)
+
+sortiranioglasi=$(echo "$spisakoglasa" | sort --key 5,5r --key 6,6 --field-separator ':' | cut --delimiter ':' -f 1)
+
+lines=$(echo "$sortiranioglasi" | wc -l | cut --delimiter ' ' -f 1)
+
+for i in $(seq "$lines"); do
+	echo "$(./detalji "$(echo "$sortiranioglasi" | head -n"$i" | tail -n1)")"
+	echo ""
+	echo ""
+	echo ""
+done

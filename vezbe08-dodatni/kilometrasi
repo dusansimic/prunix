@@ -1,0 +1,19 @@
+#!/bin/bash
+
+vise=false
+kilometara="100000"
+
+if [[ ! -z "$1" ]]; then
+	if [[ "$1" == "vise" ]] && [[ ! -z "$2" ]]; then
+		vise=true
+		kilometara="$2"
+	else
+		kilometara="$1"
+	fi
+fi
+
+while read -r line; do
+	readkilometara=$(cut --delimiter=":" --fields="5" <<< "$line")
+	[[ "$vise" = true ]] && [[ "$readkilometara" -gt "$kilometara" ]] && echo "$line"
+	[[ "$vise" = false ]] && [[ "$readkilometara" -lt "$kilometara" ]] && echo "$line"
+done < oglasi

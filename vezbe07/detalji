@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+	echo "Morate navesti oglas!"
+	exit
+fi
+
+oglas="$1"
+
+karoserija=$(grep "$(echo "$oglas" | cut --delimiter ':' -f 1,2 --output-delimiter ',')," modeli | cut --delimiter ',' -f 3)
+
+markamodel=$(echo "$oglas" | cut --delimiter ':' -f 1,2 --output-delimiter ' ')
+boja=$(echo "$oglas" | cut --delimiter ':' -f 3)
+godiste=$(echo "$oglas" | cut --delimiter ':' -f 4)
+presao=$(echo "$oglas" | cut --delimiter ':' -f 5)
+cena=$(echo "$oglas" | cut --delimiter ':' -f 6)
+brtelefona=$(echo "$oglas" | cut --delimiter ':' -f 7)
+opis=$(echo "$oglas" | cut --delimiter ':' -f 8)
+
+echo "$markamodel ($boja) $(echo "$karoserija" | head -n1)"
+grep "$karoserija" -A 4 karoserije | tail -n4
+echo "$godiste. godiste, presao $presao km"
+echo "$cena EUR, $brtelefona"
+echo "$opis"

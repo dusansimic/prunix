@@ -1,0 +1,5 @@
+#!/bin/bash
+
+data=$(egrep "^($1):" oglasi | cut --delimiter=":" --fields="3" | sort -u)
+
+[[ -n "$data" ]] && echo "$data" || echo "Nema podataka"

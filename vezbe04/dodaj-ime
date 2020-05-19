@@ -1,0 +1,3 @@
+#!/bin/bash
+
+[ -z "$1" ] || ./dodaj imena.txt "$1"

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+	echo "Niste odredili godiste!"
+	exit 1
+fi
+
+if [[ -d "$1" ]]; then
+	rm -rf "$1"
+fi
+mkdir "$1"
+
+spisakoglasa=$(grep -E "^(.*[:]){3}\b($1)" -n oglasi)
+
+sortiranspisakoglasa=$(echo "$spisakoglasa" | sort --key 7 --field-separator ':' --reverse | cut -d ':' -f 1)
+
+lines=$(echo "$sortiranspisakoglasa" | wc -l | awk '{ print $1 }')
+
+for i in $(seq "$lines"); do
+	echo "$(./detalji "$(echo "$sortiranspisakoglasa" | head -n"$i" | tail -n1)")" > "$1/oglas$i"
+done

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Niste odredili maksimalan broj za pogadjanje!"
+	exit
+fi
+
+max=$1
+zamisljen="$(( RANDOM % max))"
+
+
+while read unos; do
+	[ -z "$unos" ] && continue
+	if [ "$unos" -eq "$zamisljen" ]; then
+		echo "Pogodili ste zamisljen broj!"
+		exit
+	elif [ "$unos" -lt "$zamisljen" ]; then
+		echo "Uneti broj je manji od zamisljenog!"
+	else
+		echo "Uneti broj je veci od zamisljenog!"
+	fi
+done

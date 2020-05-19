@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [[ "$#" -ne 2 ]]; then
+	echo "Nije tacan broj parametara!"
+	exit 1
+fi
+
+if [[ -d "$1" ]]; then
+	rm -r "$1"
+fi
+mkdir "$1"
+
+godine=$(cut --delimiter ":" --fields 4 oglasi | sort -u)
+
+IFS=$'\n'
+for godina in $godine; do
+	modeli=$(egrep "($2.*$godina.*)" oglasi | cut --delimiter ":" --fields 2 | sort -u)
+	for model in $modeli; do
+		if [[ ! -e "$1/$godina" ]]; then
+			mkdir "$1/$godina"
+		fi
+		cene=$(egrep "($2[:]$model.*$godina.*)" oglasi | cut --delimiter ":" --fields 6 | sort)
+		echo "$cene" > "$1/$godina/$model"
+	done
+done
+unset IFS

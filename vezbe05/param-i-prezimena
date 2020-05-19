@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Niste odredili naziv fajla za citanje!"
+	exit
+fi
+
+if [ ! -f "$1" ]; then
+	echo "Odredjeni fajl za citanje ne postoji!"
+	exit
+fi
+
+if [ -z "$2" ]; then
+	echo "Niste odredili parametar za pretrazivanje!"
+	exit
+fi
+
+grep "$2" "$1" | wc -l
+grep "$2" "$1" | cut -f2 -d';' | sort

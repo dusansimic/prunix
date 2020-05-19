@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sum=1
+
+params="$*"
+for i in $params; do
+	sum=$(( $sum * $i ))
+done
+
+echo "$sum"

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ime=$(./random-line imena.txt)
+prezime=$(./random-line prezimena.txt)
+domen=$(./random-line domeni.txt)
+
+echo "$ime.$prezime@$domen"

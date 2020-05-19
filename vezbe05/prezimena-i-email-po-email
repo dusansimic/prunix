@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Niste odredili naziv fajla za citanje!"
+	exit
+fi
+
+if [ ! -f "$1" ]; then
+	echo "Odredjeni fajl za citanje ne postoji!"
+	exit
+fi
+
+cut -f 2,4 -d';' --output-delimiter ' ' "$1" | sort -k2

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Niste odredili naziv fajla za citanje!"
+	exit
+fi
+
+if [ ! -f "$1" ]; then
+	echo "Odredjeni fajl za citanje ne postoji!"
+	exit
+fi
+
+cut -f3 -d';' "$1" | sort | uniq -c

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Niste odredili dimenziju kvadrata!"
+	exit
+fi
+
+
+line=""
+for i in $(seq "$1"); do
+	line="$line* "
+done
+
+for i in $(seq "$1"); do
+	echo "$line"
+done

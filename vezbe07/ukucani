@@ -1,0 +1,10 @@
+#!/bin/bash
+
+imena="$*"
+for ime in $imena; do
+	if [[ -d "/home/$ime" ]]; then
+		echo "Korisnik $ime postoji."
+	else
+		echo "Korisnik $ime ne postoji!"
+	fi
+done

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+IFS="*"
+params="$*"
+unset IFS
+
+sum=1
+for num in $params; do
+	sum=$(( $sum * $num ))
+done
+
+echo "$sum"

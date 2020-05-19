@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Niste odredili budzet!"
+	exit
+fi
+
+echo "Koliko litara goriva trosi vas auto na 100 kilometara?"
+read litara
+
+echo "Koliko daleko zelite da putujete (km)?"
+read put
+
+echo "Koja je cena goriva (l)?"
+read cena
+
+ukupno=$((litara/100 * put * cena))
+echo "Put kosta: "$ukupno
+
+[ "$1" -ge "$ukupno" ] && echo "Dobar si!" || echo "Svorc si!"

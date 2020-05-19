@@ -1,0 +1,11 @@
+#!/bin/bash
+
+read -p "Unesite ime i prezime: " ime prezime
+IFS=";"
+read -p "Unesite ime filma i pesme (razdvojene sa ;): " film pesma
+unset IFS
+
+echo "Ime: $ime"
+echo "Prezime: $prezime"
+echo "Film: $film"
+echo "Pesma: $pesma"

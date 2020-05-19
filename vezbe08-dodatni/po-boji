@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for boja in $@; do
+	egrep "^(.*:){2}($boja)" oglasi | sort --field-separator=":" --key="2" | sed "s/:/ : /g"
+done

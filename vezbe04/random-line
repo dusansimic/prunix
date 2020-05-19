@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Niste odredili fajl"
+	exit
+fi
+
+if [ ! -f "$1" ]; then
+	echo "Fajl $1 ne postoji"
+	exit
+fi
+
+lines=$(cat "$1" | wc -l)
+
+head -n $(( RANDOM % lines + 1)) "$1" | tail -1

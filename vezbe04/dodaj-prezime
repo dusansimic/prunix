@@ -1,0 +1,3 @@
+#!/bin/bash
+
+[ -z "$1" ] || ./dodaj prezimena.txt "$1"

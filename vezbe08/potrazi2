@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cp oglasi tmp
+
+for param in $@; do
+	sed -i -n "/$param/p" tmp
+done
+
+cat tmp
+rm tmp

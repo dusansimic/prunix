@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ "$#" -eq 1 ] && [ "$1" == "home" ]; then
+	for file in $HOME/*; do
+		if [[ -f "$file" ]]; then
+			[[ -w "$file" ]] && echo "$file je pisljiv" || echo "$file nije pisljiv"
+		fi
+	done
+	exit 0
+fi
+
+for param in $@; do
+	if [[ -d "$param" ]]; then
+		for file in $param/*; do
+			if [[ -f "$file" ]]; then
+				[[ -w "$file" ]] && echo "$file je pisljiv" || echo "$file nije pisljiv"
+			fi
+		done
+	elif [[ -f "$param" ]]; then
+		[[ -w "$param" ]] && echo "$param je pisljiv" || echo "$param nije pisljiv"
+	fi
+done

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+	exit
+fi
+
+spisakproizvodjaca=$(grep ",$1" modeli | cut -d ',' -f 1,2 --output-delimiter ':')
+
+spisakogalasa=$(grep -E "^\b($(echo "$spisakproizvodjaca" | sed -z 's/\n/|/g'))[:]" oglasi)
+
+if [[ "$spisakogalasa" -ne "" ]]; then
+	echo "$spisakogalasa" | cut -d':' -f1 | uniq -c
+fi

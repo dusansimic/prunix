@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Niste odredili fajl"
+	exit
+fi
+
+if [ ! -f "$1" ]; then
+	echo "Fajl $1 ne postoji"
+	exit
+fi
+
+uniq --repeated "$1" > /tmp/fajl1.txt
+uniq --unique "$1" > /tmp/fajl2.txt
+cat /tmp/fajl1.txt /tmp/fajl2.txt > /tmp/fajl3.txt
+sort /tmp/fajl3.txt > "$1"
+
+rm /tmp/fajl1.txt
+rm /tmp/fajl2.txt
+rm /tmp/fajl3.txt

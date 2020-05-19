@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Prvi parametar nije odredjen. Morate reci koliko mejlova da se napravi."
+	exit
+fi
+
+for i in $(seq "$1"); do
+	./adresa
+done

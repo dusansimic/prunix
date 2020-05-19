@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./doteraj imena.txt

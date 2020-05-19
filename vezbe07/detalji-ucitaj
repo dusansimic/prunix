@@ -1,0 +1,8 @@
+#!/bin/bash
+
+IFS=$'\n'
+while read -r oglas; do
+	./detalji "$oglas"
+	echo ""
+done < "$1"
+unset IFS

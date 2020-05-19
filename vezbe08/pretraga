@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cp oglasi tmp
+
+for param in $@; do
+	grep -E "(.*[:]){7}\b(.*$param.*)(\n?)" tmp > tmp1
+	rm tmp
+	mv tmp1 tmp
+done
+
+cat tmp
+rm tmp

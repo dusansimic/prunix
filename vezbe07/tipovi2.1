@@ -1,0 +1,15 @@
+#!/bin/bash
+
+IFS=$'\n'
+while read -r file; do
+	if [[ "$file" = "stande" ]]; then
+		exit 0
+	elif [[ -f $file ]]; then
+		echo "$file je fajl."
+	elif [[ -d $file ]]; then
+		echo "$file je direktorijum."
+	else
+		echo "$file je nesto drugo."
+	fi
+done < "$1"
+unset IFS

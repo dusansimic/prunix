@@ -1,0 +1,6 @@
+#!/bin/bash
+
+IFS=$'\n'
+str="$*"
+echo "$str"
+unset IFS
