@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [[ ! -f "$1" ]]; then
+	echo "Prosledjeni fajl ne postoji!"
+	exit 1
+fi
+
+if [[ -f "tmp" ]]; then
+	rm tmp
+fi
+
+while read -r prognoza; do
+	temp=$(cut --delimiter "," --fields 4 <<< "$prognoza" | sed "s/C//g")
+	if [ "$temp" -gt 40 ] || [ "$temp" -lt 0 ]; then
+		echo "$prognoza" >> tmp
+	fi
+done < "$1"
+
+./ispis tmp
+rm tmp

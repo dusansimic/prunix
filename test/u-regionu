@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+	echo "Niste prosledili region!"
+	exit 1
+fi
+
+regioni=$(grep "$1" regioni)
+
+echo "u regionu $1 su:"
+
+cut --delimiter ":" --fields 2,4 --output-delimiter "=" <<< "$regioni"

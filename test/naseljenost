@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "broj naselja?"
+read n
+
+sort --field-separator ":" --key 4 --numeric-sort regioni | tail --lines "$n" | cut --delimiter ":" --fields 3 | sort | uniq --count

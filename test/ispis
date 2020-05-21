@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [[ ! -f "$1" ]]; then
+	echo "Prosledjeni fajl ne postoji!"
+	exit 1
+fi
+
+while read -r prognoza; do
+	oznaka=$(cut --delimiter "," --fields 1 <<< "$prognoza")
+	naziv=$(grep "$oznaka:" regioni | cut --delimiter ":" --fields 2)
+	datumvreme=$(cut --delimiter "," --fields 2,3 --output-delimiter " " <<< "$prognoza")
+	temp=$(cut --delimiter "," --fields 4 <<< "$prognoza")
+	prilika=$(cut --delimiter "," --fields 7 <<< "$prognoza")
+	slika=$(grep "$prilika" vreme | sed "s/ $prilika//g")
+	vlaznostpritisak=$(cut --delimiter "," --fields 5,6 --output-delimiter " " <<< "$prognoza")
+
+	echo
+	echo "$naziv ($oznaka)"
+	echo "$datumvreme"
+	echo
+	echo "$temp"
+	echo "$slika"
+	echo "$vlaznostpritisak"
+	echo
+	echo "--------------------"
+done < "$1"
